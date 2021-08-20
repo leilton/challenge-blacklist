@@ -35,6 +35,7 @@
                 <thead>
                     <tr>
                         <th>Nome do Cliente</th>
+                        <th>Email</th>
                         <th>Valor</th>
                         <th>Desde</th>
                     </tr>
@@ -48,11 +49,16 @@
 <script>
     $(document).ready(function () {
         var items = [];
-        $.get( '/api/clients/blacklist' , function( data ) {
+        $.get( '/api/clients/blacklist' , function( data, textStatus, jqXHR ) {
+            if (jqXHR.status == 204){
+                setTimeout(function () {
+                    window.location.reload();
+                }, 3000);
+            }
             $.each( data, function( key, val ) {
                 items.push( "<tr>" );
                 $.each( val, function( key2, value ) {
-                    if(key2 == 'firsTime'){
+                    if(key2 == 'desde'){
                         value = value.substring(0,10)
                     }
                     if (key2 != 'id') {

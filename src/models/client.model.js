@@ -3,9 +3,10 @@ module.exports = mongoose => {
         {
             nome: String,
             valor: String,
-            firstTime: Date,
+            desde: Date,
+            email: String
         },
-        { timestamps: true }
+        { timestamps: false }
     );
 
     schema.method("toJSON", function() {
